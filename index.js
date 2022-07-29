@@ -7,7 +7,7 @@ const brands = require('./routes/brands');
 const app = express();
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost/dev-db').
+mongoose.connect("mongodb+srv://rboul:rraammii@tochange-dev.cqozq.mongodb.net/test").
 then(()=>console.log('Connected to MongoDB...')).
 catch(err=>console.error('Could not connect to MongoDB.',err));
 app.use('/api/brands',brands);
