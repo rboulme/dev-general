@@ -13,7 +13,7 @@ mongoose.connect("mongodb+srv://rboul:rraammii@cluster0.cqozq.mongodb.net/?retry
 then(()=>console.log('Connected to MongoDB...')).
 catch(err=>console.error('Could not connect to MongoDB.',err));
 app.use('/api/brands',brands);
-app.use('/api/brands',home);
+app.use('/',home);
 
 const port = process.env.port || 80;
 app.listen(port,()=>{
