@@ -32,6 +32,9 @@ async function validateBrand(brand){
         nameen: Joi.string().max(50).required(),
         namear: Joi.string().max(50).required(),
         logo: Joi.string().max(50),
+        descriptionen: Joi.string().max(500),
+        descriptionar: Joi.string().max(500),
+        
     });
     const {error} = schema.validate(brand);
     if(error) return error.details[0].message;
