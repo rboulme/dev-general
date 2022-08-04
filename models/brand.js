@@ -31,6 +31,7 @@ async function validateBrand(brand){
     const schema = Joi.object({
         nameen: Joi.string().max(50).required(),
         namear: Joi.string().max(50).required(),
+        logo: Joi.string().max(50),
     });
     const {error} = schema.validate(brand);
     if(error) return error.details[0].message;
