@@ -3,12 +3,15 @@ const Joi = require('joi');
 const brandSchema = new mongoose.Schema({
     nameen:{
         type:String,
+        unique:true,
         required:true,
         maxlength:50,
         trim:true
+
         },
     namear:{
         type:String,
+        unique:true,
         required:true,
         maxlength:50,
         trim:true
@@ -27,7 +30,7 @@ const brandSchema = new mongoose.Schema({
         default:''
         }
 });
-async function validateBrand(brand){
+function validateBrand(brand){
     const schema = Joi.object({
         nameen: Joi.string().max(50).required(),
         namear: Joi.string().max(50).required(),
@@ -37,7 +40,6 @@ async function validateBrand(brand){
     });
     const {error} = schema.validate(brand);
     if(error) return error.details[0].message;
-    //Another Validations
     return null;
 }
 const Brand = mongoose.model('Brand',brandSchema);
