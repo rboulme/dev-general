@@ -15,8 +15,7 @@ router.post('/',async (req,res)=>{
     if(err) return res.status(400).send(err);
     let user = await User.findOne({email:req.body.email})
     if(user) return res.status(400).send("User already registered.");
-    res.send(user);
-
+   
 
     try {
         const user = new User(_.pick(req.body,['name','email','password']));
@@ -24,7 +23,9 @@ router.post('/',async (req,res)=>{
         user.password = await bcrypt.hash(user.password,salt);
         await user.save();
         const token = user.generateAuthToken();
-        res.header('x-auth-token',token).send(`Welcome ${user.name}`);
+        res.header('x-auth-token',token).header('access-control-expose-headers','x-auth-token')
+        send(`Welcome ${user.name}`);
+        
     } catch (ex) {
         res.status(400).send(`${ex}`)
         
