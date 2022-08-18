@@ -8,10 +8,10 @@ const home = require('./routes/home');
 const app = express();
 
 
-if(!config.get("jwtPrivateKey")){
-    console.error('FATAL ERROR: JWT is not defined.');
-    process.exit(1);
-}
+// if(!config.get("jwtPrivateKey")){
+//     console.error('FATAL ERROR: JWT is not defined.');
+//     process.exit(1);
+// }
 
 
 mongoose.connect("mongodb+srv://rboul:rraammii@cluster0.cqozq.mongodb.net/?retryWrites=true&w=majority").

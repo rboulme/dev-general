@@ -23,8 +23,7 @@ router.post('/',async (req,res)=>{
         user.password = await bcrypt.hash(user.password,salt);
         await user.save();
         const token = user.generateAuthToken();
-        res.header('x-auth-token',token).header('access-control-expose-headers','x-auth-token')
-        send(`Welcome ${user.name}`);
+        res.header('x-auth-token',token).header('access-control-expose-headers','x-auth-token').send(`Welcome ${user.name}`);
         
     } catch (ex) {
         res.status(400).send(`${ex}`)

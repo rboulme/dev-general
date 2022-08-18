@@ -34,7 +34,7 @@ function validateBrand(brand){
     const schema = Joi.object({
         nameen: Joi.string().max(50).required(),
         namear: Joi.string().max(50).required(),
-        logo: Joi.string().max(50).allow(''),
+        logo: Joi.string().max(300).allow(''),
         descriptionen: Joi.string().max(500).allow(''),
         descriptionar: Joi.string().max(500).allow(''),
     });

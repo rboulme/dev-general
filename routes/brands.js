@@ -4,11 +4,11 @@ const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const express = require('express');
 const router = express.Router();
-router.get('/',async (req,res)=>{
+router.get('/',auth,async (req,res)=>{
     const brands = await Brand.find();
     res.send(brands);
 })
-router.post('/',auth,async (req,res)=>{
+router.post('/',[auth,admin],async (req,res)=>{
     const err = validate(req.body);
     if(err) return res.status(400).send(err);
 
@@ -22,7 +22,7 @@ router.post('/',auth,async (req,res)=>{
         res.status(400).send(`${ex}`)
     }
 })
-router.put('/:id',auth,async (req,res)=>{
+router.put('/:id',[auth,admin],async (req,res)=>{
     const err = validate(req.body);
     if(err) return res.status(400).send(err);
     
